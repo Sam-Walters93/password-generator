@@ -1,1 +1,5 @@
-# Password Generator Starter Code
+# Password Generator
+
+A password generating application. 
+
+Built using _JacvaScript, HTML, CSS_ 
