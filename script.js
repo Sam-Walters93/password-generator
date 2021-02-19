@@ -1,25 +1,33 @@
 // Assignment code here
 
-generatePassword = () => {
-  //set password length with user input 
+//UNIVERSAL VARIABLES 
+
+//create holder array for user input characters
+var passwordBank = [];
+
+//create arrays of all possible inclusions
+var lowerCaseBank = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upperCaseBank = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var numBank = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+var specialCharBank = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', '=', ',', '-', '.', '/', ':', ';', '<', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
+
+
+//function to generate possible character array based on user preferences
+function generatePassword() {
+  //empty string that will be final return variable
+  var password = '';
+
+  //set password length from user input 
   var passLength = window.prompt("How long do you want your password? Choose a length between 8 and 128 characters.");
-  
+
   //if entry is invalid make them try again 
   if (passLength < 8 || passLength > 128) {
     passLength = window.prompt("Sorry, that is not a valid option. \nPlease select a number between 8 and 128.");
   }
 
-  //create holder array for user input characters
-  var passwordBank = [];
-
-  //create arrays of all possible inclusions
-  var lowerCaseBank = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  var upperCaseBank = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  var numBank = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-  var specialCharBank = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', '=', ',', '-', '.', '/', ':', ';', '<', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
-
+  //determine what characters user wants included
   var passInput = window.prompt("What characters would you like included in your password? Enter the number associated with your choice. \n \n 1. LowerCase Letters \n 2. Lower and UpperCase letters \n 3. LowerCase letters, UpperCase letters, and Numbers. \n 4. LowerCase letters, UpperCase letters, Numbers, and Special Characters." )
-
+  
   switch (passInput) {
     case '1':
       passwordBank = passwordBank.concat(lowerCaseBank);
@@ -38,16 +46,12 @@ generatePassword = () => {
       generatePassword();
   }
 
-  var password = '';
-
-  
   //for loop using user inputted password length 
   for (i = 0; i < passLength; i++) {
 
     //concat final string with random index of the character holder array 
     password += passwordBank[Math.floor(Math.random() * passwordBank.length)];
   }
-
   //return final password 
   return password;
 };
